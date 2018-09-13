@@ -25,17 +25,6 @@ iframe {
   width: 90vw;
 }
 
-.debug {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  line-height: 1;
-  padding: 1rem;
-  background: #000;
-  color: #ddd;
-  font-family: Monaco;
-}
-
 .option {
   position: fixed;
   bottom: 1rem;
@@ -50,11 +39,11 @@ iframe {
   width: 3rem;
   text-align: center;
   color: #fff;
-  background: #95A5A6;
+  background: #95a5a6;
   border-radius: 3rem;
   float: left;
   margin-right: 1rem;
 }
 .option-element.-active {
-  background: #E67E22;
+  background: #e67e22;
 }

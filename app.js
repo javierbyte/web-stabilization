@@ -1,5 +1,4 @@
 const iframeEl = document.querySelector(".iframeContainer");
-const debugEl = document.querySelector(".debug");
 
 let motionBeta = 0;
 let rotation = 0;
@@ -24,25 +23,19 @@ function handleDeviceMotionEvent(event) {
 }
 
 function paint() {
-  /*
-  const time = new Date().getTime();
-  debugEl.innerHTML = parseInt(1000 / (time - last));
-  last = time;
-  */
-
-  if (style == 0) iframeEl.style.transform = `rotate(${motionBeta}deg)`;
-
-  if (style == 1)
-    iframeEl.style.transform = `rotate(${rotation *
-      0.06}deg) translatex(${accelerationX}px) translatey(${accelerationY}px)`;
+  if (style == 1) iframeEl.style.transform = `rotate(${motionBeta}deg)`;
 
   if (style == 2)
-    iframeEl.style.transform = `rotate(${rotation * 0.06 + motionBeta}deg)`;
+    iframeEl.style.transform = `rotate(${rotation *
+      0.06}deg) translatex(${accelerationX}px) translatey(${accelerationY}px)`;
 
   if (style == 3)
     iframeEl.style.transform = `rotate(${rotation * 0.04 +
       motionBeta /
         2}deg)  translatex(${accelerationX}px) translatey(${accelerationY}px)`;
+
+  // if (style == 2)
+  //  iframeEl.style.transform = `rotate(${rotation * 0.06 + motionBeta}deg)`;
 
   window.requestAnimationFrame(paint);
 }
@@ -60,5 +53,9 @@ paint();
   });
 });
 
-window.addEventListener("deviceorientation", handleDeviceOrientationEvent, true);
+window.addEventListener(
+  "deviceorientation",
+  handleDeviceOrientationEvent,
+  true
+);
 window.addEventListener("devicemotion", handleDeviceMotionEvent, true);
