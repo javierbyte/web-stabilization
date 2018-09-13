@@ -6,72 +6,11 @@
 
 	<title>Gimbal</title>
 
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			position: relative;
-		}
-
-		body {
-			height: 100vh;
-			width: 100vw;
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-			background: #aaa;
-		}
-
-		.iframeContainer {
-			height: 80vh;
-			width: 80vw;
-			top: 7vh;
-			left: 10vw;
-			overflow: hidden;
-			position: fixed;
-		}
-
-		iframe {
-			height: 90vh;
-			width: 90vw;
-		}
-
-		.debug {
-			position: fixed;
-			bottom: 1rem;
-			left: 1rem;
-			line-height: 1;
-			padding: 1rem;
-			background: #000;
-			color: #ddd;
-			font-family: Monaco;
-		}
-
-		.option {
-			position: fixed;
-			bottom: 1rem;
-			right: 1rem;
-		}
-
-		.option-element {
-			font-size: 1.5rem;
-			font-weight: 900;
-			height: 3rem;
-			line-height: 3rem;
-			width: 3rem;
-			text-align: center;
-			color: #fff;
-			background: #95A5A6;
-			border-radius: 3rem;
-			float: left;
-			margin-right: 1rem;
-		}
-		.option-element.-active {
-			background: #E67E22;
-		}
-	</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="iframeContainer">
-		<iframe src="https://www.youtube.com/embed/ARSqDDL7qz0" frameborder="0"></iframe>
+		<iframe src="https://www.youtube.com/embed/wDjeBNv6ip0" frameborder="0"></iframe>
 	</div>
 
 	<div class="debug">
@@ -100,68 +39,6 @@
 		</div>
 	</div>
 
-	<script>
-		const iframeEl = document.querySelector(".iframeContainer");
-		const debugEl = document.querySelector(".debug");
-
-		let motionBeta = 0;
-		let rotation = 0;
-		let accelerationX = 0;
-		let accelerationY = 0;
-
-		let style = 0;
-
-		let last = new Date().getTime();
-
-		function handleOrientationEvent(event) {
-
-			motionBeta = -1 * event.beta;
-		}
-
-		function handleMotionEvent(event) {
-				const rotationRate = event.rotationRate;
-				const acceleration = event.acceleration;
-
-		    rotation = rotationRate.gamma;
-		    accelerationX = (3 * accelerationX + (Math.pow(acceleration.y, 1) * -10)) / 4;
-		    accelerationY = (3 * accelerationY + (Math.pow(acceleration.x, 1) * -10)) / 4;
-		}
-
-		function paint() {
-
-			/*
-			const time = new Date().getTime();
-			debugEl.innerHTML = parseInt(1000 / (time - last));
-			last = time;
-			*/
-
-			if (style == 0) iframeEl.style.transform = `rotate(${motionBeta}deg)`;
-			// if (style == 1) iframeEl.style.transform = `rotate(${rotation * 0.06}deg)`;
-
-			if (style == 1) iframeEl.style.transform = `rotate(${rotation * 0.06}deg) translatex(${accelerationX}px) translatey(${accelerationY}px)`;
-
-			if (style == 2) iframeEl.style.transform = `rotate(${rotation * 0.06 + motionBeta}deg)`;
-
-			if (style == 3) iframeEl.style.transform = `rotate(${rotation * 0.04 + motionBeta / 2}deg)  translatex(${accelerationX}px) translatey(${accelerationY}px)`;
-
-			// window.requestAnimationFrame(paint);
-			window.setTimeout(paint, 7);
-		}
-		paint();
-
-		window.addEventListener("deviceorientation", handleOrientationEvent, true);
-		window.addEventListener("devicemotion", handleMotionEvent, true);
-
-
-		[...document.querySelectorAll("[data-value]")].forEach(el => {
-			el.addEventListener("click", () => {
-
-				document.querySelector(".option-element.-active").classList.remove("-active");
-				el.classList.add("-active");
-				
-				style = el.dataset.value;
-			})
-		})
-	</script>
+	<script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #aaa;
+}
+
+.iframeContainer {
+  height: 80vh;
+  width: 80vw;
+  top: 7vh;
+  left: 10vw;
+  overflow: hidden;
+  position: fixed;
+}
+
+iframe {
+  height: 90vh;
+  width: 90vw;
+}
+
+.debug {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  line-height: 1;
+  padding: 1rem;
+  background: #000;
+  color: #ddd;
+  font-family: Monaco;
+}
+
+.option {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.option-element {
+  font-size: 1.5rem;
+  font-weight: 900;
+  height: 3rem;
+  line-height: 3rem;
+  width: 3rem;
+  text-align: center;
+  color: #fff;
+  background: #95A5A6;
+  border-radius: 3rem;
+  float: left;
+  margin-right: 1rem;
+}
+.option-element.-active {
+  background: #E67E22;
+}
